@@ -25,7 +25,7 @@ public class LinkedStack implements Stack{
         this.head = null;     
         this.tail = null;
     }
-    
+        
     @Override
     public void push(Object element) {
         if(this.head == null) {
