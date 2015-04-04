@@ -6,7 +6,7 @@ public class BracketsChecker {
         System.out.println(checkBrackets(expression));
         expression = "()()())))((())(";
         System.out.println(checkBrackets(expression));
-        System.out.println(checkBrackets("())(()"));
+        System.out.println(checkBrackets("()))((()"));
     }
     
     public static boolean checkBrackets(String expression) {
