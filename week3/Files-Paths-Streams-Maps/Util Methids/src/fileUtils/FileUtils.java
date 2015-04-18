@@ -101,7 +101,7 @@ public class FileUtils {
     
     public void findBrokenFiles(Path path)  {
         File file = new File(path.toString());
-        if (Files.isSymbolicLink(path) && !file.isDirectory() && !file.isFile()) {
+        if (Files.isSymbolicLink(path) && file.exists())  {
             System.out.println(path);
         }
         else if (file.isDirectory()) {            
