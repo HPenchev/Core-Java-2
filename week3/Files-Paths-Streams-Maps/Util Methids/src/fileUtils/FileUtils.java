@@ -8,11 +8,15 @@ import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
 import java.io.OutputStreamWriter;
+import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -88,12 +92,33 @@ public class FileUtils {
         File file = path.toFile();        
 
         byte[] encoded = Files.readAllBytes(Paths.get(file.getAbsolutePath()));
-        try (BufferedWriter bw = 
-                new BufferedWriter(
-                        new OutputStreamWriter(new FileOutputStream(file), "UTF-8"))) {
-                                bw.write(new String(encoded, "Windows-1251"));
-       }
+//        try (BufferedWriter bw = 
+//                new BufferedWriter(
+//                        new OutputStreamWriter(new FileOutputStream(file), "UTF-8"))) {
+//                                bw.write(new String(encoded, "Windows-1251"));
+//       }
+        
+        StringBuilder builder = new StringBuilder();
+        BufferedReader rd = null;
+        try {
+           rd = new BufferedReader(new InputStreamReader(new FileInputStream(file), "Windows-1251"));
+           while(rd.readLine()!=null){
+               builder.append(rd.readLine());
+               builder.append(System.lineSeparator());
+           }
+        } catch (Exception e) {
+            // TODO: handle exception
+        } finally {
+            if (rd != null) {
+                rd.close();
+            }
+        }
+
+        BufferedWriter wr = 
+                new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file), "UTF-8"));
+        wr.write(builder.toString());      
     }
+    
     
     public Path reduceFilePath(Path path) {
         return path.normalize();
@@ -101,7 +126,7 @@ public class FileUtils {
     
     public void findBrokenFiles(Path path)  {
         File file = new File(path.toString());
-        if (Files.isSymbolicLink(path) && file.exists())  {
+        if (Files.isSymbolicLink(path) && file.isFile() && file.isDirectory()) {
             System.out.println(path);
         }
         else if (file.isDirectory()) {            
@@ -135,7 +160,7 @@ public class FileUtils {
         File newFile = new File(newName);
         file.renameTo(newFile);
     }
-     
+         
     private Map<String, String> parseElements(List<String> elements) {
         Map<String, String> map = new HashMap<String, String>();
         for (String element : elements) {

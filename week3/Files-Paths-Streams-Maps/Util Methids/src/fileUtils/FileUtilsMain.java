@@ -11,15 +11,8 @@ import java.nio.file.Path;
 public class FileUtilsMain {
 
     public static void main(String[] args) throws FileNotFoundException, IOException {
-        //File file = new File("test.txt");
-//        file.createNewFile();
-        FileUtils utils = FileUtils.getInstance();
-//        Path path = (Path) FileSystems.getDefault().getPath("lost.s04e11.hdtv.xvid-2hd.str");
-//        utils.fixEncoding(path);
-//        Path path = (Path) FileSystems.getDefault().getPath("folder");
-//        utils.findBrokenFiles(path);   
-        Path path = (Path) FileSystems.getDefault().getPath("test.txt");
-        utils.compress(path);
-        //System.out.println(path);
+        File file = new File("lost.s04e11.hdtv.xvid-2hd.str");
+        FileUtils util = FileUtils.getInstance();
+        util.fixEncoding(file.toPath());
     }
 }
