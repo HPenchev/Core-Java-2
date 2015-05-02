@@ -9,7 +9,7 @@ public class EmailData {
     public boolean ssl;
     public String message;
     public String subject;
-    
+    public String attachmentUrl;    
     
     public EmailData(
             String host,
@@ -31,4 +31,28 @@ public class EmailData {
         this.message = message;   
         this.subject = subject;
     }  
+    
+    public EmailData(
+            String host,
+            int port, 
+            String senderUsername,
+            String senderPassword,
+            boolean ssl,
+            String senderEmail,
+            String subject,
+            String message,
+            String recipientEmail,
+            String attachmentUrl) {
+        this(
+                host,
+                port,
+                senderUsername,
+                senderPassword,
+                ssl,
+                senderEmail,
+                subject,
+                message,
+                recipientEmail);
+        this.attachmentUrl = attachmentUrl;
+    }
 }
