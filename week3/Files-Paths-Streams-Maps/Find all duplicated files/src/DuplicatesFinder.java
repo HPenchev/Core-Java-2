@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
@@ -13,7 +14,25 @@ import java.util.Set;
 public class DuplicatesFinder {
     public static void findDuplicateFiles(Path path) throws IOException {
         Collection<Set<Path>> files = getListOfDuplicateFiles(path);
-        int totalSizeToBeDeleted
+        int totalSizeToBeDeleted = 0;
+        int numberOfDuplicatedFiles = 0;
+        for (Set<Path> set : files) {
+            Path file = set.iterator().next();
+            byte[] fileBytes = Files.readAllBytes(file);
+            int sizeOfSetForDeletion = (set.size() - 1) * fileBytes.length;            
+            totalSizeToBeDeleted += sizeOfSetForDeletion;
+            numberOfDuplicatedFiles += set.size() - 1;
+            for (Path duplicatedFile : set) {
+                System.out.println(duplicatedFile.toString());
+            }
+            
+            System.out.println();
+        }
+        
+        System.out.println(files.size() + " groups of duplicated files found");
+        System.out.println("A total of " + numberOfDuplicatedFiles + 
+                " files can be deleted freeing up " + 
+                totalSizeToBeDeleted + "bytes of disk space");
         
     }
     
