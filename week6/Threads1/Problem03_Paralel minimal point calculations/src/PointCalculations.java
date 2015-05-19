@@ -17,53 +17,53 @@ public class PointCalculations {
         
         Map<Point, Point> outMap = new HashMap<Point, Point>();
         
-        NearestPointFinder finderOne = new NearestPointFinder(points, 0, 6667, outMap);
-        NearestPointFinder finderTwo = new NearestPointFinder(points, 6667, 13334, outMap);
-        NearestPointFinder finderThree = new NearestPointFinder(points, 13334, 20001, outMap);
-        NearestPointFinder finderFour = new NearestPointFinder(points, 20001, 26668, outMap);
-        NearestPointFinder finderFive = new NearestPointFinder(points, 28751, 35714, outMap);
-        NearestPointFinder finderSix = new NearestPointFinder(points, 35714, 42857, outMap);
-        NearestPointFinder finderSeven = new NearestPointFinder(points, 42857, 50000, outMap);
-        NearestPointFinder finderEight = new NearestPointFinder(points, 50000, 57143, outMap);
-        NearestPointFinder finderNine = new NearestPointFinder(points, 57143, 64286, outMap);
-        NearestPointFinder finderTen = new NearestPointFinder(points, 64286, 71429, outMap);
-        NearestPointFinder finderEleven = new NearestPointFinder(points, 71429, 78572, outMap);
-        NearestPointFinder finderTwelve = new NearestPointFinder(points, 78572, 85715, outMap);
-        NearestPointFinder finderThirteen = 
-                new NearestPointFinder(points, 85715, 92858, outMap);
-        NearestPointFinder finderFourteen = 
-                new NearestPointFinder(points, 92858, 100000, outMap);
+        NearestPointFinder finderOne = new NearestPointFinder(points, 0, 25000, outMap);
+        NearestPointFinder finderTwo = new NearestPointFinder(points, 25000, 50000, outMap);
+        NearestPointFinder finderThree = new NearestPointFinder(points, 50000, 75000, outMap);
+        NearestPointFinder finderFour = new NearestPointFinder(points, 75000, 100000, outMap);
+//        NearestPointFinder finderFive = new NearestPointFinder(points, 40000, 50000, outMap);
+//        NearestPointFinder finderSix = new NearestPointFinder(points, 50000, 60000, outMap);
+//        NearestPointFinder finderSeven = new NearestPointFinder(points, 60000, 70000, outMap);
+//        NearestPointFinder finderEight = new NearestPointFinder(points, 70000, 80000, outMap);
+//        NearestPointFinder finderNine = new NearestPointFinder(points, 80000, 90000, outMap);
+//        NearestPointFinder finderTen = new NearestPointFinder(points, 90000, 100000, outMap);
+//        NearestPointFinder finderEleven = new NearestPointFinder(points, 71429, 78572, outMap);
+//        NearestPointFinder finderTwelve = new NearestPointFinder(points, 78572, 85715, outMap);
+//        NearestPointFinder finderThirteen = 
+//                new NearestPointFinder(points, 85715, 92858, outMap);
+//        NearestPointFinder finderFourteen = 
+//                new NearestPointFinder(points, 92858, 100000, outMap);
         
         finderOne.start();
         finderTwo.start();
         finderThree.start();
         finderFour.start();
-        finderFive.start();
-        finderSix.start();
-        finderSeven.start();
-        finderEight.start();
-        finderNine.start();
-        finderTen.start();
-        finderEleven.start();
-        finderTwelve.start();
-        finderThirteen.start();
-        finderFourteen.start();
+//        finderFive.start();
+//        finderSix.start();
+//        finderSeven.start();
+//        finderEight.start();
+//        finderNine.start();
+//        finderTen.start();
+//        finderEleven.start();
+//        finderTwelve.start();
+//        finderThirteen.start();
+//        finderFourteen.start();
         
         finderOne.join();
         finderTwo.join();
         finderThree.join();
         finderFour.join();
-        finderFive.join();
-        finderSix.join();
-        finderSeven.join();
-        finderEight.join();
-        finderNine.join();
-        finderTen.join();
-        finderEleven.join();
-        finderTwelve.join();
-        finderThirteen.join();
-        finderFourteen.join();
-        
+//        finderFive.join();
+//        finderSix.join();
+//        finderSeven.join();
+//        finderEight.join();
+//        finderNine.join();
+//        finderTen.join();
+//        finderEleven.join();
+//        finderTwelve.join();
+//        finderThirteen.join();
+//        finderFourteen.join();
+//        
         long endTime   = System.currentTimeMillis();
         long totalTime = endTime - startTime;        
         System.out.println(totalTime);
@@ -141,7 +141,7 @@ public class PointCalculations {
         for (int i = indexFrom; i < indexTo; i++) {
             double minDistance = Double.MAX_VALUE;
             point = inPoints.get(i);
-            for (int j = indexFrom; j < indexTo; j++) {
+            for (int j = 0; j < NUMBER_OF_POINTS; j++) {
                 pointToCheck = inPoints.get(j);
                 if (j == i) {
                     continue;
