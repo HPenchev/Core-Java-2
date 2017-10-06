@@ -33,9 +33,9 @@ public class FileUtilsTests {
         File  file = new File("test.txt");
         String result = utils.readFrom(file);
         assertEquals("test", result);
-        utils.writeTo("Azis e pederas", file);
+        utils.writeTo("Азис е модерен нетрадиционен фолк певец", file);
         result = utils.readFrom(FileSystems.getDefault().getPath("test.txt"));
-        assertEquals("Azis e pederas", result);
+        assertEquals("Азис е модерен нетрадиционен фолк певец", result);
     }
     
     @Test
